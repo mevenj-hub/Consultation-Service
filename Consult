@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Intake | Business Operations, Data & Automation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    [dir="rtl"] body { font-family: 'Cairo', sans-serif; }
+    .service-card input:checked + div {
+      border-color: #0f766e;
+      background-color: #f0fdfa;
+      box-shadow: 0 0 0 1px #0f766e;
+    }
+    .pill-check input:checked + span {
+      background-color: #0f766e;
+      color: #ffffff;
+      border-color: #0f766e;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+  <!-- Top Bar -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-20">
+    <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between gap-3">
+      <div>
+        <span class="text-xs font-semibold uppercase tracking-wider text-teal-700" data-i18n="badge">Operations & Data Consulting</span>
+        <h1 class="text-lg font-bold text-slate-900" data-i18n="brand">Marah Al-Najar</h1>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="https://wa.me/962797650522" target="_blank"
+          class="hidden sm:inline-flex px-3 py-1.5 text-xs font-semibold rounded-lg border border-emerald-600 text-emerald-700 hover:bg-emerald-50 transition"
+          data-i18n="directWa">
+          WhatsApp
+        </a>
+        <button id="currencyToggle" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-300 bg-slate-50 hover:bg-slate-100 transition">
+          Currency: JOD
+        </button>
+        <button id="langToggle" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-teal-700 text-white hover:bg-teal-800 transition">
+          عربي
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Intro -->
+    <div class="mb-8">
+      <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2" data-i18n="heroTitle">
+        Start a Project Inquiry
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base max-w-2xl" data-i18n="heroSubtitle">
+        Select the areas where you need support, share your current setup and goals, and I will get back to you with a clear scope, timeline, and quote.
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form id="intakeForm" class="space-y-8">
+
+      <!-- 1. Service Selection -->
+      <section class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+        <div>
+          <h3 class="text-base font-bold text-slate-900" data-i18n="sec1Title">1. What do you need help with?</h3>
+          <p class="text-xs text-slate-500 mt-0.5" data-i18n="sec1Sub">Select one or more services that fit your project.</p>
+        </div>
+
+        <!-- Pillar A -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-teal-700 mb-3" data-i18n="cat1">Business Operations & Management</h4>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <label class="service-card cursor-pointer">
+              <input type="checkbox" name="services" value="Operational Database & SOP Structuring" class="hidden">
+              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
+                <div class="font-semibold text-sm text-slate-900" data-i18n="s1Title">Operational Databases & SOPs</div>
+                <p class="text-xs text-slate-500 mt-1" data-i18n="s1Desc">Client tracking, subscriptions, supplier logs, and daily workflow structure.</p>
+              </div>
+            </label>
+            <label class="service-card cursor-pointer">
+              <input type="checkbox" name="services" value="Digitizing Manual & WhatsApp Workflows" class="hidden">
+              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
+                <div class="font-semibold text-sm text-slate-900" data-i18n="s2Title">Digitizing Manual & Chat Orders</div>
+                <p class="text-xs text-slate-500 mt-1" data-i18n="s2Desc">Converting WhatsApp orders, paper logs, or scattered sheets into clean trackers.</p>
+              </div>
+            </label>
+            <label class="service-card cursor-pointer">
+              <input type="checkbox" name="services" value="Costing, Pricing & Margin Models" class="hidden">
+              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
+                <div class="font-semibold text-sm text-slate-900" data-i18n="s3Title">Costing, Pricing & Margin Models</div>
+                <p class="text-xs text-slate-500 mt-1" data-i18n="s3Desc">Dynamic unit-cost calculators, overhead allocation, and pricing tiers.</p>
+              </div>
+            </label>
+            <label class="service-card cursor-pointer">
+              <input type="checkbox" name="services" value="Inventory & Quality Control Logs" class="hidden">
+              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
+                <div class="font-semibold text-sm text-slate-900" data-i18n="s4Title">Inventory & QC Audit Systems</div>
+                <p class="text-xs text-slate-500 mt-1" data-i18n="s4Desc">Stock tracking, audit checklists, and operational compliance logs.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Pillar B -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-teal-700 mb-3" data-i18n="cat2">Data Analysis & Business Intelligence</h4>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <label class="service-card cursor-pointer">
+              <input type="checkbox" name="services" value="Data Cleaning & Structuring" class="hidden">
+              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
+                <div class="font-semibold text-sm text-slate-900" data-i18n="s5Title">Data Cleaning & Deduplication</div>
+                <p class="text-xs text-slate-500 mt-1" data-i18n="s5Desc">Standardizing raw POS/CRM exports and removing duplicates into one clean source.</p>
+              </div>
+            </label>
+            <label class="service-card cursor-pointer">
+              <input type="checkbox" name="services" value="Interactive Dashboards (Power BI / Tableau / Sheets)" class="hidden">
+              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
+                <div class="font-semibold text-sm text-slate-900" data-i18n="s6Title">Interactive KPI Dashboards</div>
+                <p class="text-xs text-slate-500 mt-1" data-i18n="s6Desc">Visual sales, revenue, retention, and operations dashboards in Power BI, Tableau, or Sheets.</p>
+              </div>
+            </label>
+            <label class="service-card cursor-pointer sm:col-span-2">
+              <input type="checkbox" name="services" value="Performance & Operational Audit Report" class="hidden">
+              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
+                <div class="font-semibold text-sm text-slate-900" data-i18n="s7Title">Performance & Bottleneck Analysis</div>
+                <p class="text-xs text-slate-500 mt-1" data-i18n="s7Desc">Deep-dive analysis of your historical business data with actionable summary reports.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Pillar C -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-teal-700 mb-3" data-i18n="cat3">System Automations & Custom Tools</h4>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <label class="service-card cursor-pointer">
+              <input type="checkbox" name="services" value="Google Apps Script / Python Automation" class="hidden">
+              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
+                <div class="font-semibold text-sm text-slate-900" data-i18n="s8Title">Workflow & Spreadsheet Automation</div>
+                <p class="text-xs text-slate-500 mt-1" data-i18n="s8Desc">Custom Google Apps Scripts or Python pipelines to eliminate repetitive manual work.</p>
+              </div>
+            </label>
+            <label class="service-card cursor-pointer">
+              <input type="checkbox" name="services" value="Automated Form-to-Database Pipeline" class="hidden">
+              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
+                <div class="font-semibold text-sm text-slate-900" data-i18n="s9Title">Automated Intake & Routing Flows</div>
+                <p class="text-xs text-slate-500 mt-1" data-i18n="s9Desc">Connecting forms directly to live databases with validation and instant alerts.</p>
+              </div>
+            </label>
+            <label class="service-card cursor-pointer sm:col-span-2">
+              <input type="checkbox" name="services" value="Custom Internal Web Tool / Prototype" class="hidden">
+              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
+                <div class="font-semibold text-sm text-slate-900" data-i18n="s10Title">Lightweight Web Tools & Calculators</div>
+                <p class="text-xs text-slate-500 mt-1" data-i18n="s10Desc">Custom mobile-friendly calculators, order interfaces, or internal portals.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Requirements & Current Setup -->
+      <section class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+        <h3 class="text-base font-bold text-slate-900" data-i18n="sec2Title">2. Project Requirements & Current Setup</h3>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-2" data-i18n="toolsLabel">Current Tools / Data Format (Optional)</label>
+          <div class="flex flex-wrap gap-2">
+            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="Google Sheets" class="hidden"><span class="px-3 py-1.5 rounded-full border border-slate-300 text-xs font-medium inline-block">Google Sheets</span></label>
+            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="Microsoft Excel" class="hidden"><span class="px-3 py-1.5 rounded-full border border-slate-300 text-xs font-medium inline-block">Microsoft Excel</span></label>
+            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="SQL / Database" class="hidden"><span class="px-3 py-1.5 rounded-full border border-slate-300 text-xs font-medium inline-block">SQL / Database</span></label>
+            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="POS / CRM Export" class="hidden"><span class="px-3 py-1.5 rounded-full border border-slate-300 text-xs font-medium inline-block">POS / CRM Export</span></label>
+            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="WhatsApp / Manual Logs" class="hidden"><span class="px-3 py-1.5 rounded-full border border-slate-300 text-xs font-medium inline-block">WhatsApp / Manual</span></label>
+            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="Starting from Scratch" class="hidden"><span class="px-3 py-1.5 rounded-full border border-slate-300 text-xs font-medium inline-block">Starting from Scratch</span></label>
+          </div>
+        </div>
+
+        <div>
+          <label for="details" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="detailsLabel">Project Details & Requirements *</label>
+          <textarea id="details" name="details" rows="4" required
+            class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
+            placeholder="Describe what you need built, fixed, or analyzed, and any specific outputs you expect..."></textarea>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="deadline" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="deadlineLabel">Target Deadline *</label>
+            <input type="date" id="deadline" name="deadline" required
+              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+          </div>
+          <div>
+            <label for="budget" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="budgetLabel">Estimated Budget *</label>
+            <select id="budget" name="budget" required
+              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-600">
+              <!-- Populated dynamically by JS for JOD / USD -->
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Contact Details -->
+      <section class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <h3 class="text-base font-bold text-slate-900" data-i18n="sec3Title">3. Your Contact Information</h3>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="fullName" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="nameLabel">Full Name *</label>
+            <input type="text" id="fullName" name="fullName" required
+              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+          </div>
+          <div>
+            <label for="businessName" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="bizLabel">Company / Project Name</label>
+            <input type="text" id="businessName" name="businessName"
+              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+          </div>
+          <div>
+            <label for="phone" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="phoneLabel">WhatsApp / Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="+962 7X XXX XXXX"
+              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+          </div>
+          <div>
+            <label for="email" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="emailLabel">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com"
+              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+          </div>
+        </div>
+      </section>
+
+      <!-- Submit -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-500" data-i18n="privacyNote">Your project details are kept strictly confidential.</p>
+        <button type="submit" id="submitBtn"
+          class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-semibold text-sm shadow-sm transition">
+          <span data-i18n="submitBtn">Submit Project Request</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Confirmation Card (Hidden initially) -->
+    <div id="successBox" class="hidden bg-white p-8 rounded-2xl border border-teal-200 shadow-sm text-center space-y-4">
+      <div class="w-12 h-12 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center mx-auto text-xl font-bold">✓</div>
+      <h3 class="text-xl font-bold text-slate-900" data-i18n="thanksTitle">Request Received!</h3>
+      <p class="text-sm text-slate-600 max-w-md mx-auto" data-i18n="thanksSub">
+        Thank you for sharing your project details. I will review your requirements and reach out shortly.
+      </p>
+      <div class="pt-2 flex flex-wrap justify-center gap-3">
+        <a id="whatsappLink" href="#" target="_blank"
+          class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold transition"
+          data-i18n="sendWa">
+          Send Summary via WhatsApp
+        </a>
+        <button type="button" onclick="location.reload()"
+          class="px-5 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-sm font-semibold text-slate-700 transition"
+          data-i18n="anotherReq">
+          Submit Another Request
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Replace with your deployed Google Apps Script Web App URL when ready:
+    const APPS_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+    const YOUR_WHATSAPP_NUMBER = "962797650522";
+
+    let currentLang = "en";
+    let currentCurrency = "JOD";
+
+    const budgetOptions = {
+      JOD: {
+        en: [
+          "Under 100 JOD (Quick script, cleanup, or basic sheet)",
+          "100 – 250 JOD (Tracker, automation, or dashboard)",
+          "250 – 500 JOD (Multi-part system or deeper analysis)",
+          "500+ JOD (Full custom workflow / ongoing build)",
+          "Flexible / Not sure yet (Need a quote)"
+        ],
+        ar: [
+          "أقل من 100 دينار (سكربت سريع، تنظيف بيانات، أو جدول بسيط)",
+          "100 – 250 دينار (نظام متابعة، أتمتة، أو لوحة مؤشرات)",
+          "250 – 500 دينار (نظام متكامل متعدد الأجزاء أو تحليل معمّق)",
+          "أكثر من 500 دينار (نظام عمل مخصص بالكامل)",
+          "مرن / غير محدد بعد (أحتاج عرض سعر)"
+        ]
+      },
+      USD: {
+        en: [
+          "Under $150 (Quick script, cleanup, or basic sheet)",
+          "$150 – $350 (Tracker, automation, or dashboard)",
+          "$350 – $700 (Multi-part system or deeper analysis)",
+          "$700+ (Full custom workflow / ongoing build)",
+          "Flexible / Not sure yet (Need a quote)"
+        ],
+        ar: [
+          "أقل من 150 دولار (سكربت سريع أو تنظيف بيانات)",
+          "150 – 350 دولار (نظام متابعة، أتمتة، أو لوحة مؤشرات)",
+          "350 – 700 دولار (نظام متكامل أو تحليل معمّق)",
+          "أكثر من 700 دولار (نظام عمل مخصص بالكامل)",
+          "مرن / غير محدد بعد (أحتاج عرض سعر)"
+        ]
+      }
+    };
+
+    const translations = {
+      en: {
+        badge: "Operations & Data Consulting",
+        brand: "Marah Al-Najar",
+        directWa: "WhatsApp",
+        heroTitle: "Start a Project Inquiry",
+        heroSubtitle: "Select the areas where you need support, share your current setup and goals, and I will get back to you with a clear scope, timeline, and quote.",
+        sec1Title: "1. What do you need help with?",
+        sec1Sub: "Select one or more services that fit your project.",
+        cat1: "Business Operations & Management",
+        s1Title: "Operational Databases & SOPs",
+        s1Desc: "Client tracking, subscriptions, supplier logs, and daily workflow structure.",
+        s2Title: "Digitizing Manual & Chat Orders",
+        s2Desc: "Converting WhatsApp orders, paper logs, or scattered sheets into clean trackers.",
+        s3Title: "Costing, Pricing & Margin Models",
+        s3Desc: "Dynamic unit-cost calculators, overhead allocation, and pricing tiers.",
+        s4Title: "Inventory & QC Audit Systems",
+        s4Desc: "Stock tracking, audit checklists, and operational compliance logs.",
+        cat2: "Data Analysis & Business Intelligence",
+        s5Title: "Data Cleaning & Deduplication",
+        s5Desc: "Standardizing raw POS/CRM exports and removing duplicates into one clean source.",
+        s6Title: "Interactive KPI Dashboards",
+        s6Desc: "Visual sales, revenue, retention, and operations dashboards in Power BI, Tableau, or Sheets.",
+        s7Title: "Performance & Bottleneck Analysis",
+        s7Desc: "Deep-dive analysis of your historical business data with actionable summary reports.",
+        cat3: "System Automations & Custom Tools",
+        s8Title: "Workflow & Spreadsheet Automation",
+        s8Desc: "Custom Google Apps Scripts or Python pipelines to eliminate repetitive manual work.",
+        s9Title: "Automated Intake & Routing Flows",
+        s9Desc: "Connecting forms directly to live databases with validation and instant alerts.",
+        s10Title: "Lightweight Web Tools & Calculators",
+        s10Desc: "Custom mobile-friendly calculators, order interfaces, or internal portals.",
+        sec2Title: "2. Project Requirements & Current Setup",
+        toolsLabel: "Current Tools / Data Format (Optional)",
+        detailsLabel: "Project Details & Requirements *",
+        deadlineLabel: "Target Deadline *",
+        budgetLabel: "Estimated Budget *",
+        sec3Title: "3. Your Contact Information",
+        nameLabel: "Full Name *",
+        bizLabel: "Company / Project Name",
+        phoneLabel: "WhatsApp / Phone Number *",
+        emailLabel: "Email Address",
+        privacyNote: "Your project details are kept strictly confidential.",
+        submitBtn: "Submit Project Request",
+        thanksTitle: "Request Received!",
+        thanksSub: "Thank you for sharing your project details. I will review your requirements and reach out shortly.",
+        sendWa: "Send Summary via WhatsApp",
+        anotherReq: "Submit Another Request"
+      },
+      ar: {
+        badge: "استشارات العمليات وتحليل البيانات",
+        brand: "مرح النجار",
+        directWa: "واتساب",
+        heroTitle: "طلب بدء مشروع جديد",
+        heroSubtitle: "اختر الخدمات التي تحتاجها، واكتب تفاصيل مشروعك والموعد والميزانية المتوقعة، وسأتواصل معك بخطة عمل وعرض سعر واضح.",
+        sec1Title: "1. ما الخدمات التي تحتاج المساعدة فيها؟",
+        sec1Sub: "يمكنك اختيار خدمة واحدة أو أكثر حسب احتياج مشروعك.",
+        cat1: "إدارة العمليات وتنظيم الأعمال",
+        s1Title: "قواعد البيانات التشغيلية وإجراءات العمل",
+        s1Desc: "تنظيم سجلات العملاء والاشتراكات والموردين وسير العمل اليومي.",
+        s2Title: "أتمتة الطلبات اليدوية وطلبات الواتساب",
+        s2Desc: "تحويل الطلبات الورقية أو رسائل الواتساب والجداول المبعثرة إلى نظام تتبع منظم.",
+        s3Title: "نماذج التكاليف والتسعير وهوامش الربح",
+        s3Desc: "حاسبات تكلفة الوحدة، توزيع المصاريف التشغيلية، وتحديد فئات التسعير.",
+        s4Title: "أنظمة الجرد وضبط الجودة",
+        s4Desc: "جداول تتبع المخزون، قوائم التدقيق، وسجلات المطابقة التشغيلية.",
+        cat2: "تحليل البيانات وذكاء الأعمال",
+        s5Title: "تنظيف البيانات وإزالة التكرار",
+        s5Desc: "توحيد بيانات نقاط البيع أو الأنظمة المختلفة وإزالة التكرار في مصدر واحد دقيق.",
+        s6Title: "لوحات مؤشرات الأداء التفاعلية",
+        s6Desc: "لوحات متابعة للمبيعات والإيرادات والعمليات عبر Power BI أو Tableau أو Google Sheets.",
+        s7Title: "تحليل الأداء واكتشاف نقاط الاختناق",
+        s7Desc: "تحليل البيانات التاريخية للمشروع وتقديم تقارير عملية قابلة للتنفيذ.",
+        cat3: "أتمتة الأنظمة والأدوات المخصصة",
+        s8Title: "أتمتة الجداول وسير العمل",
+        s8Desc: "كتابة سكربتات Google Apps Script أو Python لتقليل العمل اليدوي المتكرر.",
+        s9Title: "ربط النماذج بقواعد البيانات تلقائياً",
+        s9Desc: "ربط نماذج الطلبات مباشرة بقاعدة البيانات مع التحقق والتنبيهات الفورية.",
+        s10Title: "أدوات ويب وحاسبات مخصصة",
+        s10Desc: "تصميم حاسبات تفاعلية أو واجهات طلبات خفيفة متوافقة مع الهاتف.",
+        sec2Title: "2. تفاصيل المشروع والوضع الحالي",
+        toolsLabel: "الأدوات المستخدمة حالياً (اختياري)",
+        detailsLabel: "تفاصيل المشروع والمتطلبات *",
+        deadlineLabel: "الموعد النهائي المطلوب *",
+        budgetLabel: "الميزانية التقديرية *",
+        sec3Title: "3. معلومات التواصل",
+        nameLabel: "الاسم الكامل *",
+        bizLabel: "اسم الشركة أو المشروع",
+        phoneLabel: "رقم الهاتف / الواتساب *",
+        emailLabel: "البريد الإلكتروني",
+        privacyNote: "جميع تفاصيل مشروعك تُعامل بسرية تامة.",
+        submitBtn: "إرسال طلب المشروع",
+        thanksTitle: "تم استلام طلبك بنجاح!",
+        thanksSub: "شكراً لمشاركة تفاصيل مشروعك. سأقوم بمراجعة المتطلبات والتواصل معك في أقرب وقت.",
+        sendWa: "إرسال الملخص عبر واتساب",
+        anotherReq: "إرسال طلب آخر"
+      }
+    };
+
+    function populateBudgets() {
+      const select = document.getElementById("budget");
+      const list = budgetOptions[currentCurrency][currentLang];
+      select.innerHTML = `<option value="" disabled selected>${currentLang === "en" ? "Select a budget range..." : "اختر نطاق الميزانية..."}</option>` +
+        list.map(opt => `<option value="${opt}">${opt}</option>`).join("");
+    }
+
+    function applyLanguage() {
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+      document.getElementById("langToggle").textContent = currentLang === "en" ? "عربي" : "EN";
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
+      });
+      populateBudgets();
+    }
+
+    document.getElementById("langToggle").addEventListener("click", () => {
+      currentLang = currentLang === "en" ? "ar" : "en";
+      applyLanguage();
+    });
+
+    document.getElementById("currencyToggle").addEventListener("click", () => {
+      currentCurrency = currentCurrency === "JOD" ? "USD" : "JOD";
+      document.getElementById("currencyToggle").textContent = `Currency: ${currentCurrency}`;
+      populateBudgets();
+    });
+
+    document.getElementById("intakeForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById("submitBtn");
+      btn.disabled = true;
+      btn.textContent = currentLang === "en" ? "Submitting..." : "جاري الإرسال...";
+
+      const services = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(el => el.value);
+      const tools = Array.from(document.querySelectorAll('input[name="tools"]:checked')).map(el => el.value);
+
+      const payload = {
+        fullName: document.getElementById("fullName").value.trim(),
+        businessName: document.getElementById("businessName").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        services: services.length ? services : ["General Consultation"],
+        tools: tools,
+        details: document.getElementById("details").value.trim(),
+        deadline: document.getElementById("deadline").value,
+        currency: currentCurrency,
+        budget: document.getElementById("budget").value
+      };
+
+      try {
+        if (APPS_SCRIPT_URL && !APPS_SCRIPT_URL.includes("YOUR_GOOGLE")) {
+          await fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+          });
+        }
+      } catch (err) {
+        console.error("Submission error:", err);
+      }
+
+      const waText = encodeURIComponent(
+        `Hi Marah, I just submitted a project inquiry:\n` +
+        `• Name: ${payload.fullName}${payload.businessName ? ` (${payload.businessName})` : ""}\n` +
+        `• Services: ${payload.services.join(", ")}\n` +
+        `• Deadline: ${payload.deadline}\n` +
+        `• Budget: ${payload.budget}\n` +
+        `• Details: ${payload.details}`
+      );
+      document.getElementById("whatsappLink").href = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${waText}`;
+
+      document.getElementById("intakeForm").classList.add("hidden");
+      document.getElementById("successBox").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    populateBudgets();
+  </script>
+</body>
+</html>
