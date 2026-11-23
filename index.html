@@ -3,156 +3,317 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Intake | Business Operations, Data & Automation</title>
+  <title>Marah Al-Najar | Operations, Data & Automation Consulting</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    :root {
+      --forest: #1d3f3e;
+      --forest-dark: #132a29;
+      --forest-light: #2a5856;
+      --gold: #d97706;
+      --gold-soft: #fef3c7;
+      --cream: #f7f6f2;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--cream);
+      background-image: radial-gradient(at 0% 0%, rgba(29, 63, 62, 0.06) 0px, transparent 50%),
+                        radial-gradient(at 100% 10%, rgba(217, 119, 6, 0.06) 0px, transparent 45%);
+    }
     [dir="rtl"] body { font-family: 'Cairo', sans-serif; }
-    .service-card input:checked + div {
-      border-color: #0f766e;
-      background-color: #f0fdfa;
-      box-shadow: 0 0 0 1px #0f766e;
+
+    /* Interactive Service Cards */
+    .service-card .card-inner {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .service-card:hover .card-inner {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px -8px rgba(29, 63, 62, 0.12);
+      border-color: #2a5856;
+    }
+    .service-card input:checked + .card-inner {
+      border-color: #1d3f3e;
+      background: linear-gradient(135deg, #ffffff 0%, #eef6f5 100%);
+      box-shadow: 0 10px 25px -6px rgba(29, 63, 62, 0.18), 0 0 0 1.5px #1d3f3e;
+      transform: translateY(-2px);
+    }
+    .service-card input:checked + .card-inner .check-dot {
+      background-color: #1d3f3e;
+      border-color: #1d3f3e;
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+    .service-card input:checked + .card-inner .check-dot svg {
+      opacity: 1;
+    }
+
+    /* Tool Pills */
+    .pill-check span {
+      transition: all 0.2s ease;
+    }
+    .pill-check:hover span {
+      border-color: #1d3f3e;
+      background-color: #f0f7f6;
     }
     .pill-check input:checked + span {
-      background-color: #0f766e;
+      background-color: #1d3f3e;
       color: #ffffff;
-      border-color: #0f766e;
+      border-color: #1d3f3e;
+      box-shadow: 0 4px 12px rgba(29, 63, 62, 0.2);
+    }
+
+    /* Subtle Hero Mesh */
+    .hero-mesh {
+      background: linear-gradient(135deg, #132a29 0%, #1d3f3e 55%, #265250 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-mesh::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -15%;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-mesh::after {
+      content: "";
+      position: absolute;
+      bottom: -50%;
+      left: -10%;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(45, 212, 191, 0.15) 0%, transparent 70%);
+      pointer-events: none;
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="text-slate-800 antialiased pb-24">
 
-  <!-- Top Bar -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-20">
-    <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between gap-3">
-      <div>
-        <span class="text-xs font-semibold uppercase tracking-wider text-teal-700" data-i18n="badge">Operations & Data Consulting</span>
-        <h1 class="text-lg font-bold text-slate-900" data-i18n="brand">Marah Al-Najar</h1>
+  <!-- Glass Top Bar -->
+  <header class="bg-white/85 backdrop-blur-md border-b border-stone-200/80 sticky top-0 z-30">
+    <div class="max-w-4xl mx-auto px-4 py-3.5 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-[#1d3f3e] text-amber-300 flex items-center justify-center font-extrabold text-sm shadow-sm">
+          M
+        </div>
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-widest text-amber-700 block leading-none mb-0.5" data-i18n="badge">Operations & Data Consulting</span>
+          <h1 class="text-base font-extrabold text-[#1d3f3e] leading-tight" data-i18n="brand">Marah Al-Najar</h1>
+        </div>
       </div>
+
       <div class="flex items-center gap-2">
         <a href="https://wa.me/962797650522" target="_blank"
-          class="hidden sm:inline-flex px-3 py-1.5 text-xs font-semibold rounded-lg border border-emerald-600 text-emerald-700 hover:bg-emerald-50 transition"
-          data-i18n="directWa">
-          WhatsApp
+          class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-xl border border-emerald-600/30 bg-emerald-50/80 text-emerald-800 hover:bg-emerald-100 transition">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span data-i18n="directWa">WhatsApp</span>
         </a>
-        <button id="currencyToggle" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-300 bg-slate-50 hover:bg-slate-100 transition">
-          Currency: JOD
+        <button id="currencyToggle" type="button"
+          class="px-3 py-1.5 text-xs font-bold rounded-xl border border-stone-300 bg-white text-slate-700 hover:border-[#1d3f3e] hover:text-[#1d3f3e] transition shadow-2xs">
+          JOD
         </button>
-        <button id="langToggle" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-teal-700 text-white hover:bg-teal-800 transition">
+        <button id="langToggle" type="button"
+          class="px-3.5 py-1.5 text-xs font-bold rounded-xl bg-[#1d3f3e] text-white hover:bg-[#132a29] transition shadow-sm">
           عربي
         </button>
       </div>
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto px-4 py-8">
-    <!-- Intro -->
-    <div class="mb-8">
-      <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2" data-i18n="heroTitle">
-        Start a Project Inquiry
-      </h2>
-      <p class="text-slate-600 text-sm sm:text-base max-w-2xl" data-i18n="heroSubtitle">
-        Select the areas where you need support, share your current setup and goals, and I will get back to you with a clear scope, timeline, and quote.
-      </p>
-    </div>
+  <main class="max-w-4xl mx-auto px-4 pt-6 space-y-8">
+
+    <!-- Dynamic Executive Hero Card -->
+    <section class="hero-mesh rounded-3xl p-7 sm:p-10 text-white shadow-xl shadow-[#1d3f3e]/15">
+      <div class="relative z-10 max-w-2xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-xs text-xs font-semibold text-amber-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+          <span data-i18n="heroTag">Custom Systems • Analytics • Automation</span>
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight" data-i18n="heroTitle">
+          Turn Operational Chaos Into Clean, Automated Systems.
+        </h2>
+        <p class="text-stone-200 text-sm sm:text-base leading-relaxed" data-i18n="heroSubtitle">
+          Select the areas where you need support, share your current setup and goals, and I will get back to you with a clear scope, timeline, and quote.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-2.5 text-xs font-medium text-stone-200">
+          <span class="px-3 py-1.5 rounded-lg bg-white/10 border border-white/10">⚡ Google Sheets & Apps Script</span>
+          <span class="px-3 py-1.5 rounded-lg bg-white/10 border border-white/10">📊 Power BI, Tableau & SQL</span>
+          <span class="px-3 py-1.5 rounded-lg bg-white/10 border border-white/10">⚙️ Python & Web Tools</span>
+        </div>
+      </div>
+    </section>
 
     <!-- Form -->
     <form id="intakeForm" class="space-y-8">
 
       <!-- 1. Service Selection -->
-      <section class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
-        <div>
-          <h3 class="text-base font-bold text-slate-900" data-i18n="sec1Title">1. What do you need help with?</h3>
-          <p class="text-xs text-slate-500 mt-0.5" data-i18n="sec1Sub">Select one or more services that fit your project.</p>
+      <section class="bg-white p-6 sm:p-8 rounded-3xl border border-stone-200/90 shadow-sm space-y-7">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-100 pb-4">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-amber-600" data-i18n="step1Tag">Step 01</span>
+            <h3 class="text-lg font-extrabold text-[#1d3f3e]" data-i18n="sec1Title">What do you need help with?</h3>
+          </div>
+          <p class="text-xs font-medium text-slate-500 bg-stone-100 px-3 py-1.5 rounded-full self-start sm:self-auto" data-i18n="sec1Sub">
+            Select one or more services
+          </p>
         </div>
 
         <!-- Pillar A -->
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-teal-700 mb-3" data-i18n="cat1">Business Operations & Management</h4>
-          <div class="grid sm:grid-cols-2 gap-3">
+        <div class="space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-bold">01</span>
+            <h4 class="text-xs font-extrabold uppercase tracking-wider text-[#1d3f3e]" data-i18n="cat1">Business Operations & Management</h4>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3.5">
             <label class="service-card cursor-pointer">
               <input type="checkbox" name="services" value="Operational Database & SOP Structuring" class="hidden">
-              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
-                <div class="font-semibold text-sm text-slate-900" data-i18n="s1Title">Operational Databases & SOPs</div>
-                <p class="text-xs text-slate-500 mt-1" data-i18n="s1Desc">Client tracking, subscriptions, supplier logs, and daily workflow structure.</p>
+              <div class="card-inner p-4 rounded-2xl border border-stone-200 bg-white h-full flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-bold text-sm text-slate-900" data-i18n="s1Title">Operational Databases & SOPs</div>
+                  <p class="text-xs text-slate-500 mt-1 leading-relaxed" data-i18n="s1Desc">Client tracking, subscriptions, supplier logs, and daily workflow structure.</p>
+                </div>
+                <span class="check-dot shrink-0 w-5 h-5 rounded-full border-2 border-stone-300 flex items-center justify-center mt-0.5 transition">
+                  <svg class="w-3 h-3 opacity-0 transition" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
               </div>
             </label>
+
             <label class="service-card cursor-pointer">
               <input type="checkbox" name="services" value="Digitizing Manual & WhatsApp Workflows" class="hidden">
-              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
-                <div class="font-semibold text-sm text-slate-900" data-i18n="s2Title">Digitizing Manual & Chat Orders</div>
-                <p class="text-xs text-slate-500 mt-1" data-i18n="s2Desc">Converting WhatsApp orders, paper logs, or scattered sheets into clean trackers.</p>
+              <div class="card-inner p-4 rounded-2xl border border-stone-200 bg-white h-full flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-bold text-sm text-slate-900" data-i18n="s2Title">Digitizing Manual & Chat Orders</div>
+                  <p class="text-xs text-slate-500 mt-1 leading-relaxed" data-i18n="s2Desc">Converting WhatsApp orders, paper logs, or scattered sheets into clean trackers.</p>
+                </div>
+                <span class="check-dot shrink-0 w-5 h-5 rounded-full border-2 border-stone-300 flex items-center justify-center mt-0.5 transition">
+                  <svg class="w-3 h-3 opacity-0 transition" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
               </div>
             </label>
+
             <label class="service-card cursor-pointer">
               <input type="checkbox" name="services" value="Costing, Pricing & Margin Models" class="hidden">
-              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
-                <div class="font-semibold text-sm text-slate-900" data-i18n="s3Title">Costing, Pricing & Margin Models</div>
-                <p class="text-xs text-slate-500 mt-1" data-i18n="s3Desc">Dynamic unit-cost calculators, overhead allocation, and pricing tiers.</p>
+              <div class="card-inner p-4 rounded-2xl border border-stone-200 bg-white h-full flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-bold text-sm text-slate-900" data-i18n="s3Title">Costing, Pricing & Margin Models</div>
+                  <p class="text-xs text-slate-500 mt-1 leading-relaxed" data-i18n="s3Desc">Dynamic unit-cost calculators, overhead allocation, and pricing tiers.</p>
+                </div>
+                <span class="check-dot shrink-0 w-5 h-5 rounded-full border-2 border-stone-300 flex items-center justify-center mt-0.5 transition">
+                  <svg class="w-3 h-3 opacity-0 transition" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
               </div>
             </label>
+
             <label class="service-card cursor-pointer">
               <input type="checkbox" name="services" value="Inventory & Quality Control Logs" class="hidden">
-              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
-                <div class="font-semibold text-sm text-slate-900" data-i18n="s4Title">Inventory & QC Audit Systems</div>
-                <p class="text-xs text-slate-500 mt-1" data-i18n="s4Desc">Stock tracking, audit checklists, and operational compliance logs.</p>
+              <div class="card-inner p-4 rounded-2xl border border-stone-200 bg-white h-full flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-bold text-sm text-slate-900" data-i18n="s4Title">Inventory & QC Audit Systems</div>
+                  <p class="text-xs text-slate-500 mt-1 leading-relaxed" data-i18n="s4Desc">Stock tracking, audit checklists, and operational compliance logs.</p>
+                </div>
+                <span class="check-dot shrink-0 w-5 h-5 rounded-full border-2 border-stone-300 flex items-center justify-center mt-0.5 transition">
+                  <svg class="w-3 h-3 opacity-0 transition" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
               </div>
             </label>
           </div>
         </div>
 
         <!-- Pillar B -->
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-teal-700 mb-3" data-i18n="cat2">Data Analysis & Business Intelligence</h4>
-          <div class="grid sm:grid-cols-2 gap-3">
+        <div class="space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-teal-100 text-teal-800 flex items-center justify-center text-xs font-bold">02</span>
+            <h4 class="text-xs font-extrabold uppercase tracking-wider text-[#1d3f3e]" data-i18n="cat2">Data Analysis & Business Intelligence</h4>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3.5">
             <label class="service-card cursor-pointer">
               <input type="checkbox" name="services" value="Data Cleaning & Structuring" class="hidden">
-              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
-                <div class="font-semibold text-sm text-slate-900" data-i18n="s5Title">Data Cleaning & Deduplication</div>
-                <p class="text-xs text-slate-500 mt-1" data-i18n="s5Desc">Standardizing raw POS/CRM exports and removing duplicates into one clean source.</p>
+              <div class="card-inner p-4 rounded-2xl border border-stone-200 bg-white h-full flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-bold text-sm text-slate-900" data-i18n="s5Title">Data Cleaning & Deduplication</div>
+                  <p class="text-xs text-slate-500 mt-1 leading-relaxed" data-i18n="s5Desc">Standardizing raw POS/CRM exports and removing duplicates into one clean source.</p>
+                </div>
+                <span class="check-dot shrink-0 w-5 h-5 rounded-full border-2 border-stone-300 flex items-center justify-center mt-0.5 transition">
+                  <svg class="w-3 h-3 opacity-0 transition" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
               </div>
             </label>
+
             <label class="service-card cursor-pointer">
               <input type="checkbox" name="services" value="Interactive Dashboards (Power BI / Tableau / Sheets)" class="hidden">
-              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
-                <div class="font-semibold text-sm text-slate-900" data-i18n="s6Title">Interactive KPI Dashboards</div>
-                <p class="text-xs text-slate-500 mt-1" data-i18n="s6Desc">Visual sales, revenue, retention, and operations dashboards in Power BI, Tableau, or Sheets.</p>
+              <div class="card-inner p-4 rounded-2xl border border-stone-200 bg-white h-full flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-bold text-sm text-slate-900" data-i18n="s6Title">Interactive KPI Dashboards</div>
+                  <p class="text-xs text-slate-500 mt-1 leading-relaxed" data-i18n="s6Desc">Visual sales, revenue, retention, and operations dashboards in Power BI, Tableau, or Sheets.</p>
+                </div>
+                <span class="check-dot shrink-0 w-5 h-5 rounded-full border-2 border-stone-300 flex items-center justify-center mt-0.5 transition">
+                  <svg class="w-3 h-3 opacity-0 transition" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
               </div>
             </label>
+
             <label class="service-card cursor-pointer sm:col-span-2">
               <input type="checkbox" name="services" value="Performance & Operational Audit Report" class="hidden">
-              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
-                <div class="font-semibold text-sm text-slate-900" data-i18n="s7Title">Performance & Bottleneck Analysis</div>
-                <p class="text-xs text-slate-500 mt-1" data-i18n="s7Desc">Deep-dive analysis of your historical business data with actionable summary reports.</p>
+              <div class="card-inner p-4 rounded-2xl border border-stone-200 bg-white h-full flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-bold text-sm text-slate-900" data-i18n="s7Title">Performance & Bottleneck Analysis</div>
+                  <p class="text-xs text-slate-500 mt-1 leading-relaxed" data-i18n="s7Desc">Deep-dive analysis of your historical business data with actionable summary reports.</p>
+                </div>
+                <span class="check-dot shrink-0 w-5 h-5 rounded-full border-2 border-stone-300 flex items-center justify-center mt-0.5 transition">
+                  <svg class="w-3 h-3 opacity-0 transition" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
               </div>
             </label>
           </div>
         </div>
 
         <!-- Pillar C -->
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-teal-700 mb-3" data-i18n="cat3">System Automations & Custom Tools</h4>
-          <div class="grid sm:grid-cols-2 gap-3">
+        <div class="space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-bold">03</span>
+            <h4 class="text-xs font-extrabold uppercase tracking-wider text-[#1d3f3e]" data-i18n="cat3">System Automations & Custom Tools</h4>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3.5">
             <label class="service-card cursor-pointer">
               <input type="checkbox" name="services" value="Google Apps Script / Python Automation" class="hidden">
-              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
-                <div class="font-semibold text-sm text-slate-900" data-i18n="s8Title">Workflow & Spreadsheet Automation</div>
-                <p class="text-xs text-slate-500 mt-1" data-i18n="s8Desc">Custom Google Apps Scripts or Python pipelines to eliminate repetitive manual work.</p>
+              <div class="card-inner p-4 rounded-2xl border border-stone-200 bg-white h-full flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-bold text-sm text-slate-900" data-i18n="s8Title">Workflow & Spreadsheet Automation</div>
+                  <p class="text-xs text-slate-500 mt-1 leading-relaxed" data-i18n="s8Desc">Custom Google Apps Scripts or Python pipelines to eliminate repetitive manual work.</p>
+                </div>
+                <span class="check-dot shrink-0 w-5 h-5 rounded-full border-2 border-stone-300 flex items-center justify-center mt-0.5 transition">
+                  <svg class="w-3 h-3 opacity-0 transition" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
               </div>
             </label>
+
             <label class="service-card cursor-pointer">
               <input type="checkbox" name="services" value="Automated Form-to-Database Pipeline" class="hidden">
-              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
-                <div class="font-semibold text-sm text-slate-900" data-i18n="s9Title">Automated Intake & Routing Flows</div>
-                <p class="text-xs text-slate-500 mt-1" data-i18n="s9Desc">Connecting forms directly to live databases with validation and instant alerts.</p>
+              <div class="card-inner p-4 rounded-2xl border border-stone-200 bg-white h-full flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-bold text-sm text-slate-900" data-i18n="s9Title">Automated Intake & Routing Flows</div>
+                  <p class="text-xs text-slate-500 mt-1 leading-relaxed" data-i18n="s9Desc">Connecting forms directly to live databases with validation and instant alerts.</p>
+                </div>
+                <span class="check-dot shrink-0 w-5 h-5 rounded-full border-2 border-stone-300 flex items-center justify-center mt-0.5 transition">
+                  <svg class="w-3 h-3 opacity-0 transition" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
               </div>
             </label>
+
             <label class="service-card cursor-pointer sm:col-span-2">
               <input type="checkbox" name="services" value="Custom Internal Web Tool / Prototype" class="hidden">
-              <div class="p-4 rounded-xl border border-slate-200 hover:border-teal-500 transition h-full">
-                <div class="font-semibold text-sm text-slate-900" data-i18n="s10Title">Lightweight Web Tools & Calculators</div>
-                <p class="text-xs text-slate-500 mt-1" data-i18n="s10Desc">Custom mobile-friendly calculators, order interfaces, or internal portals.</p>
+              <div class="card-inner p-4 rounded-2xl border border-stone-200 bg-white h-full flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-bold text-sm text-slate-900" data-i18n="s10Title">Lightweight Web Tools & Calculators</div>
+                  <p class="text-xs text-slate-500 mt-1 leading-relaxed" data-i18n="s10Desc">Custom mobile-friendly calculators, order interfaces, or internal portals.</p>
+                </div>
+                <span class="check-dot shrink-0 w-5 h-5 rounded-full border-2 border-stone-300 flex items-center justify-center mt-0.5 transition">
+                  <svg class="w-3 h-3 opacity-0 transition" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
               </div>
             </label>
           </div>
@@ -160,96 +321,104 @@
       </section>
 
       <!-- 2. Requirements & Current Setup -->
-      <section class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
-        <h3 class="text-base font-bold text-slate-900" data-i18n="sec2Title">2. Project Requirements & Current Setup</h3>
+      <section class="bg-white p-6 sm:p-8 rounded-3xl border border-stone-200/90 shadow-sm space-y-6">
+        <div class="border-b border-stone-100 pb-4">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-amber-600" data-i18n="step2Tag">Step 02</span>
+          <h3 class="text-lg font-extrabold text-[#1d3f3e]" data-i18n="sec2Title">Project Requirements & Current Setup</h3>
+        </div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-2" data-i18n="toolsLabel">Current Tools / Data Format (Optional)</label>
+          <label class="block text-xs font-bold text-slate-700 mb-2.5" data-i18n="toolsLabel">Current Tools / Data Format (Optional)</label>
           <div class="flex flex-wrap gap-2">
-            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="Google Sheets" class="hidden"><span class="px-3 py-1.5 rounded-full border border-slate-300 text-xs font-medium inline-block">Google Sheets</span></label>
-            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="Microsoft Excel" class="hidden"><span class="px-3 py-1.5 rounded-full border border-slate-300 text-xs font-medium inline-block">Microsoft Excel</span></label>
-            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="SQL / Database" class="hidden"><span class="px-3 py-1.5 rounded-full border border-slate-300 text-xs font-medium inline-block">SQL / Database</span></label>
-            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="POS / CRM Export" class="hidden"><span class="px-3 py-1.5 rounded-full border border-slate-300 text-xs font-medium inline-block">POS / CRM Export</span></label>
-            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="WhatsApp / Manual Logs" class="hidden"><span class="px-3 py-1.5 rounded-full border border-slate-300 text-xs font-medium inline-block">WhatsApp / Manual</span></label>
-            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="Starting from Scratch" class="hidden"><span class="px-3 py-1.5 rounded-full border border-slate-300 text-xs font-medium inline-block">Starting from Scratch</span></label>
+            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="Google Sheets" class="hidden"><span class="px-3.5 py-2 rounded-xl border border-stone-200 bg-stone-50 text-xs font-semibold inline-block">Google Sheets</span></label>
+            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="Microsoft Excel" class="hidden"><span class="px-3.5 py-2 rounded-xl border border-stone-200 bg-stone-50 text-xs font-semibold inline-block">Microsoft Excel</span></label>
+            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="SQL / Database" class="hidden"><span class="px-3.5 py-2 rounded-xl border border-stone-200 bg-stone-50 text-xs font-semibold inline-block">SQL / Database</span></label>
+            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="POS / CRM Export" class="hidden"><span class="px-3.5 py-2 rounded-xl border border-stone-200 bg-stone-50 text-xs font-semibold inline-block">POS / CRM Export</span></label>
+            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="WhatsApp / Manual Logs" class="hidden"><span class="px-3.5 py-2 rounded-xl border border-stone-200 bg-stone-50 text-xs font-semibold inline-block">WhatsApp / Manual</span></label>
+            <label class="pill-check cursor-pointer"><input type="checkbox" name="tools" value="Starting from Scratch" class="hidden"><span class="px-3.5 py-2 rounded-xl border border-stone-200 bg-stone-50 text-xs font-semibold inline-block">Starting from Scratch</span></label>
           </div>
         </div>
 
         <div>
-          <label for="details" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="detailsLabel">Project Details & Requirements *</label>
+          <label for="details" class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="detailsLabel">Project Details & Requirements *</label>
           <textarea id="details" name="details" rows="4" required
-            class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
+            class="w-full rounded-2xl border border-stone-300 bg-stone-50/50 px-4 py-3 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1d3f3e] focus:border-[#1d3f3e] transition"
             placeholder="Describe what you need built, fixed, or analyzed, and any specific outputs you expect..."></textarea>
         </div>
 
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
-            <label for="deadline" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="deadlineLabel">Target Deadline *</label>
+            <label for="deadline" class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="deadlineLabel">Target Deadline *</label>
             <input type="date" id="deadline" name="deadline" required
-              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+              class="w-full rounded-2xl border border-stone-300 bg-stone-50/50 px-4 py-3 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1d3f3e] focus:border-[#1d3f3e] transition">
           </div>
           <div>
-            <label for="budget" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="budgetLabel">Estimated Budget *</label>
+            <label for="budget" class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="budgetLabel">Estimated Budget *</label>
             <select id="budget" name="budget" required
-              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-600">
-              <!-- Populated dynamically by JS for JOD / USD -->
+              class="w-full rounded-2xl border border-stone-300 bg-stone-50/50 px-4 py-3 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1d3f3e] focus:border-[#1d3f3e] transition">
             </select>
           </div>
         </div>
       </section>
 
       <!-- 3. Contact Details -->
-      <section class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-        <h3 class="text-base font-bold text-slate-900" data-i18n="sec3Title">3. Your Contact Information</h3>
+      <section class="bg-white p-6 sm:p-8 rounded-3xl border border-stone-200/90 shadow-sm space-y-5">
+        <div class="border-b border-stone-100 pb-4">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-amber-600" data-i18n="step3Tag">Step 03</span>
+          <h3 class="text-lg font-extrabold text-[#1d3f3e]" data-i18n="sec3Title">Your Contact Information</h3>
+        </div>
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
-            <label for="fullName" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="nameLabel">Full Name *</label>
+            <label for="fullName" class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="nameLabel">Full Name *</label>
             <input type="text" id="fullName" name="fullName" required
-              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+              class="w-full rounded-2xl border border-stone-300 bg-stone-50/50 px-4 py-3 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1d3f3e] focus:border-[#1d3f3e] transition">
           </div>
           <div>
-            <label for="businessName" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="bizLabel">Company / Project Name</label>
+            <label for="businessName" class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="bizLabel">Company / Project Name</label>
             <input type="text" id="businessName" name="businessName"
-              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+              class="w-full rounded-2xl border border-stone-300 bg-stone-50/50 px-4 py-3 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1d3f3e] focus:border-[#1d3f3e] transition">
           </div>
           <div>
-            <label for="phone" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="phoneLabel">WhatsApp / Phone Number *</label>
+            <label for="phone" class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="phoneLabel">WhatsApp / Phone Number *</label>
             <input type="tel" id="phone" name="phone" required placeholder="+962 7X XXX XXXX"
-              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+              class="w-full rounded-2xl border border-stone-300 bg-stone-50/50 px-4 py-3 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1d3f3e] focus:border-[#1d3f3e] transition">
           </div>
           <div>
-            <label for="email" class="block text-xs font-semibold text-slate-700 mb-1.5" data-i18n="emailLabel">Email Address</label>
+            <label for="email" class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="emailLabel">Email Address</label>
             <input type="email" id="email" name="email" placeholder="you@company.com"
-              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+              class="w-full rounded-2xl border border-stone-300 bg-stone-50/50 px-4 py-3 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1d3f3e] focus:border-[#1d3f3e] transition">
           </div>
         </div>
       </section>
 
       <!-- Submit -->
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-xs text-slate-500" data-i18n="privacyNote">Your project details are kept strictly confidential.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-1">
+        <p class="text-xs font-medium text-slate-500 flex items-center gap-1.5">
+          <span>🔒</span>
+          <span data-i18n="privacyNote">Your project details are kept strictly confidential.</span>
+        </p>
         <button type="submit" id="submitBtn"
-          class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-semibold text-sm shadow-sm transition">
+          class="w-full sm:w-auto px-9 py-4 rounded-2xl bg-gradient-to-r from-[#1d3f3e] to-[#265250] hover:from-[#132a29] hover:to-[#1d3f3e] text-white font-bold text-sm shadow-lg shadow-[#1d3f3e]/20 transition transform active:scale-[0.99]">
           <span data-i18n="submitBtn">Submit Project Request</span>
         </button>
       </div>
     </form>
 
     <!-- Confirmation Card (Hidden initially) -->
-    <div id="successBox" class="hidden bg-white p-8 rounded-2xl border border-teal-200 shadow-sm text-center space-y-4">
-      <div class="w-12 h-12 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center mx-auto text-xl font-bold">✓</div>
-      <h3 class="text-xl font-bold text-slate-900" data-i18n="thanksTitle">Request Received!</h3>
-      <p class="text-sm text-slate-600 max-w-md mx-auto" data-i18n="thanksSub">
+    <div id="successBox" class="hidden bg-white p-8 sm:p-10 rounded-3xl border border-[#1d3f3e]/20 shadow-xl text-center space-y-5">
+      <div class="w-16 h-16 rounded-2xl bg-[#1d3f3e] text-amber-300 flex items-center justify-center mx-auto text-2xl font-extrabold shadow-md">✓</div>
+      <h3 class="text-2xl font-extrabold text-[#1d3f3e]" data-i18n="thanksTitle">Request Received!</h3>
+      <p class="text-sm text-slate-600 max-w-md mx-auto leading-relaxed" data-i18n="thanksSub">
         Thank you for sharing your project details. I will review your requirements and reach out shortly.
       </p>
       <div class="pt-2 flex flex-wrap justify-center gap-3">
         <a id="whatsappLink" href="#" target="_blank"
-          class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold transition"
+          class="px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-md shadow-emerald-600/20 transition"
           data-i18n="sendWa">
           Send Summary via WhatsApp
         </a>
         <button type="button" onclick="location.reload()"
-          class="px-5 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-sm font-semibold text-slate-700 transition"
+          class="px-6 py-3 rounded-2xl border border-stone-300 hover:bg-stone-50 text-sm font-bold text-slate-700 transition"
           data-i18n="anotherReq">
           Submit Another Request
         </button>
@@ -257,8 +426,22 @@
     </div>
   </main>
 
+  <!-- Live Selection Summary Bar -->
+  <div id="liveSummaryBar" class="fixed bottom-4 inset-x-0 z-30 px-4 pointer-events-none transition-all duration-300 translate-y-24 opacity-0">
+    <div class="max-w-4xl mx-auto bg-[#132a29]/95 backdrop-blur-md text-white px-5 py-3 rounded-2xl shadow-2xl border border-white/10 flex items-center justify-between gap-4 pointer-events-auto">
+      <div class="flex items-center gap-3 min-w-0">
+        <span id="selectedCountBadge" class="shrink-0 px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-extrabold text-xs">0</span>
+        <p id="selectedSummaryText" class="text-xs sm:text-sm font-medium text-stone-200 truncate">
+          No services selected yet
+        </p>
+      </div>
+      <a href="#details" class="shrink-0 text-xs font-bold text-amber-300 hover:text-amber-200 underline underline-offset-4" data-i18n="jumpDetails">
+        Continue ↓
+      </a>
+    </div>
+  </div>
+
   <script>
-    // Replace with your deployed Google Apps Script Web App URL when ready:
     const APPS_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
     const YOUR_WHATSAPP_NUMBER = "962797650522";
 
@@ -305,10 +488,12 @@
         badge: "Operations & Data Consulting",
         brand: "Marah Al-Najar",
         directWa: "WhatsApp",
-        heroTitle: "Start a Project Inquiry",
+        heroTag: "Custom Systems • Analytics • Automation",
+        heroTitle: "Turn Operational Chaos Into Clean, Automated Systems.",
         heroSubtitle: "Select the areas where you need support, share your current setup and goals, and I will get back to you with a clear scope, timeline, and quote.",
-        sec1Title: "1. What do you need help with?",
-        sec1Sub: "Select one or more services that fit your project.",
+        step1Tag: "Step 01",
+        sec1Title: "What do you need help with?",
+        sec1Sub: "Select one or more services",
         cat1: "Business Operations & Management",
         s1Title: "Operational Databases & SOPs",
         s1Desc: "Client tracking, subscriptions, supplier logs, and daily workflow structure.",
@@ -332,12 +517,14 @@
         s9Desc: "Connecting forms directly to live databases with validation and instant alerts.",
         s10Title: "Lightweight Web Tools & Calculators",
         s10Desc: "Custom mobile-friendly calculators, order interfaces, or internal portals.",
-        sec2Title: "2. Project Requirements & Current Setup",
+        step2Tag: "Step 02",
+        sec2Title: "Project Requirements & Current Setup",
         toolsLabel: "Current Tools / Data Format (Optional)",
         detailsLabel: "Project Details & Requirements *",
         deadlineLabel: "Target Deadline *",
         budgetLabel: "Estimated Budget *",
-        sec3Title: "3. Your Contact Information",
+        step3Tag: "Step 03",
+        sec3Title: "Your Contact Information",
         nameLabel: "Full Name *",
         bizLabel: "Company / Project Name",
         phoneLabel: "WhatsApp / Phone Number *",
@@ -347,16 +534,19 @@
         thanksTitle: "Request Received!",
         thanksSub: "Thank you for sharing your project details. I will review your requirements and reach out shortly.",
         sendWa: "Send Summary via WhatsApp",
-        anotherReq: "Submit Another Request"
+        anotherReq: "Submit Another Request",
+        jumpDetails: "Continue ↓"
       },
       ar: {
         badge: "استشارات العمليات وتحليل البيانات",
         brand: "مرح النجار",
         directWa: "واتساب",
-        heroTitle: "طلب بدء مشروع جديد",
+        heroTag: "أنظمة مخصصة • تحليل بيانات • أتمتة",
+        heroTitle: "حوّل العمل اليدوي المشتت إلى أنظمة ذكية ومنظمة.",
         heroSubtitle: "اختر الخدمات التي تحتاجها، واكتب تفاصيل مشروعك والموعد والميزانية المتوقعة، وسأتواصل معك بخطة عمل وعرض سعر واضح.",
-        sec1Title: "1. ما الخدمات التي تحتاج المساعدة فيها؟",
-        sec1Sub: "يمكنك اختيار خدمة واحدة أو أكثر حسب احتياج مشروعك.",
+        step1Tag: "الخطوة 01",
+        sec1Title: "ما الخدمات التي تحتاج المساعدة فيها؟",
+        sec1Sub: "اختر خدمة واحدة أو أكثر",
         cat1: "إدارة العمليات وتنظيم الأعمال",
         s1Title: "قواعد البيانات التشغيلية وإجراءات العمل",
         s1Desc: "تنظيم سجلات العملاء والاشتراكات والموردين وسير العمل اليومي.",
@@ -380,12 +570,14 @@
         s9Desc: "ربط نماذج الطلبات مباشرة بقاعدة البيانات مع التحقق والتنبيهات الفورية.",
         s10Title: "أدوات ويب وحاسبات مخصصة",
         s10Desc: "تصميم حاسبات تفاعلية أو واجهات طلبات خفيفة متوافقة مع الهاتف.",
-        sec2Title: "2. تفاصيل المشروع والوضع الحالي",
+        step2Tag: "الخطوة 02",
+        sec2Title: "تفاصيل المشروع والوضع الحالي",
         toolsLabel: "الأدوات المستخدمة حالياً (اختياري)",
         detailsLabel: "تفاصيل المشروع والمتطلبات *",
         deadlineLabel: "الموعد النهائي المطلوب *",
         budgetLabel: "الميزانية التقديرية *",
-        sec3Title: "3. معلومات التواصل",
+        step3Tag: "الخطوة 03",
+        sec3Title: "معلومات التواصل",
         nameLabel: "الاسم الكامل *",
         bizLabel: "اسم الشركة أو المشروع",
         phoneLabel: "رقم الهاتف / الواتساب *",
@@ -395,9 +587,35 @@
         thanksTitle: "تم استلام طلبك بنجاح!",
         thanksSub: "شكراً لمشاركة تفاصيل مشروعك. سأقوم بمراجعة المتطلبات والتواصل معك في أقرب وقت.",
         sendWa: "إرسال الملخص عبر واتساب",
-        anotherReq: "إرسال طلب آخر"
+        anotherReq: "إرسال طلب آخر",
+        jumpDetails: "متابعة ↓"
       }
     };
+
+    function updateLiveBar() {
+      const checked = Array.from(document.querySelectorAll('input[name="services"]:checked'));
+      const bar = document.getElementById("liveSummaryBar");
+      const badge = document.getElementById("selectedCountBadge");
+      const text = document.getElementById("selectedSummaryText");
+
+      badge.textContent = checked.length;
+      if (checked.length > 0) {
+        bar.classList.remove("translate-y-24", "opacity-0");
+        const labels = checked.map(cb => {
+          const titleEl = cb.parentElement.querySelector("[data-i18n]");
+          return titleEl ? titleEl.textContent : cb.value;
+        });
+        text.textContent = currentLang === "en"
+          ? `${checked.length} selected: ${labels.join(" • ")}`
+          : `تم اختيار (${checked.length}): ${labels.join(" • ")}`;
+      } else {
+        bar.classList.add("translate-y-24", "opacity-0");
+      }
+    }
+
+    document.querySelectorAll('input[name="services"]').forEach(cb => {
+      cb.addEventListener("change", updateLiveBar);
+    });
 
     function populateBudgets() {
       const select = document.getElementById("budget");
@@ -415,6 +633,7 @@
         if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
       });
       populateBudgets();
+      updateLiveBar();
     }
 
     document.getElementById("langToggle").addEventListener("click", () => {
@@ -424,7 +643,7 @@
 
     document.getElementById("currencyToggle").addEventListener("click", () => {
       currentCurrency = currentCurrency === "JOD" ? "USD" : "JOD";
-      document.getElementById("currencyToggle").textContent = `Currency: ${currentCurrency}`;
+      document.getElementById("currencyToggle").textContent = currentCurrency;
       populateBudgets();
     });
 
@@ -472,6 +691,7 @@
       );
       document.getElementById("whatsappLink").href = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${waText}`;
 
+      document.getElementById("liveSummaryBar").classList.add("hidden");
       document.getElementById("intakeForm").classList.add("hidden");
       document.getElementById("successBox").classList.remove("hidden");
       window.scrollTo({ top: 0, behavior: "smooth" });
